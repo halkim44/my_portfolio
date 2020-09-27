@@ -3,7 +3,6 @@ import './App.css';
 import { Wrapper } from './components/Wrapper';
 import { Navbar } from './components/Navbar';
 import { useRoutes } from 'hookrouter';
-import { NotFound } from './pages/NotFound';
 import { NavbarContextProvider } from './context/NavbarContext';
 
 const Home = lazy(() => import('./pages/Home'));
@@ -11,6 +10,7 @@ const About = lazy(() => import('./pages/About'));
 const Skills = lazy(() => import('./pages/Skills'));
 const Projects = lazy(() => import('./pages/Projects'));
 const Contact = lazy(() => import('./pages/Contact'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 
 
