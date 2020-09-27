@@ -1,4 +1,4 @@
-import React, {lazy} from 'react';
+import React, {lazy, Suspense} from 'react';
 import './App.css';
 import { Wrapper } from './components/Wrapper';
 import { Navbar } from './components/Navbar';
@@ -29,7 +29,9 @@ function App() {
     <NavbarContextProvider>
       <Wrapper>
         <Navbar />
-        {match || <NotFound />}
+        <Suspense fallback={<h1>Loading...</h1>}>
+          { match || <NotFound />}
+        </Suspense>
       </Wrapper>
     </NavbarContextProvider>
   );
