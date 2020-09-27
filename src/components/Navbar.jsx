@@ -4,7 +4,6 @@ import { useNavbarActionsContext, useNavbarContext } from '../context/NavbarCont
 import { Logo } from './Logo';
 import { NavMenu } from './NavMenu';
 import { useMediaQuery } from 'react-responsive';
-import { usePath } from 'hookrouter';
 import { BreakPoints } from '../helper/breakpoints';
 import { SocialMedia } from './SocialMedia';
 
