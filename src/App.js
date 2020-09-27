@@ -1,14 +1,18 @@
-import React from 'react';
+import React, {lazy} from 'react';
 import './App.css';
 import { Wrapper } from './components/Wrapper';
 import { Navbar } from './components/Navbar';
-import { Home } from './pages/Home';
-import { About } from './pages/About';
-import { Skills } from './pages/Skills';
-import { Projects } from './pages/Projects';
-import { Contact } from './pages/Contact';
 import { useRoutes } from 'hookrouter';
 import { NotFound } from './pages/NotFound';
+import { NavbarContextProvider } from './context/NavbarContext';
+
+const Home = lazy(() => import('./pages/Home'));
+const About = lazy(() => import('./pages/About'));
+const Skills = lazy(() => import('./pages/Skills'));
+const Projects = lazy(() => import('./pages/Projects'));
+const Contact = lazy(() => import('./pages/Contact'));
+
+
 
 const routes = {
   "/": () => <Home />,
@@ -22,10 +26,12 @@ function App() {
 
   const match = useRoutes(routes);
   return (
-    <Wrapper>
-      <Navbar />
-      {match || <NotFound />}
-    </Wrapper>
+    <NavbarContextProvider>
+      <Wrapper>
+        <Navbar />
+        {match || <NotFound />}
+      </Wrapper>
+    </NavbarContextProvider>
   );
 }
 
