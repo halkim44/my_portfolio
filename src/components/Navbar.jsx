@@ -1,15 +1,17 @@
-import React from 'react';
-import styled from 'styled-components';
-import { useNavbarActionsContext, useNavbarContext } from '../context/NavbarContext';
-import { Logo } from './Logo';
-import { NavMenu } from './NavMenu';
-import { useMediaQuery } from 'react-responsive';
-import { BreakPoints } from '../helper/breakpoints';
-import { SocialMedia } from './SocialMedia';
+import React from "react";
+import styled from "styled-components";
+import {
+  useNavbarActionsContext,
+  useNavbarContext,
+} from "../context/NavbarContext";
+import { Logo } from "./Logo";
+import { NavMenu } from "./NavMenu";
+import { useMediaQuery } from "react-responsive";
+import { BreakPoints } from "../helper/breakpoints";
+import { SocialMedia } from "./SocialMedia";
 
-
-export const navbarWidth = '60px';
-export const navbarHeight = '45px';
+export const navbarWidth = "60px";
+export const navbarHeight = "45px";
 
 const TopMenu = styled.div`
   position: fixed;
@@ -21,8 +23,10 @@ const TopMenu = styled.div`
   height: ${navbarHeight};
   padding: 0 25px;
   justify-content: space-between;
-  
-  ${props => props.isDesktop && `
+
+  ${(props) =>
+    props.isTablet &&
+    `
     width: ${navbarWidth};
     flex-direction: column;
     justify-content: flex-start;
@@ -37,7 +41,7 @@ const TopMenu = styled.div`
   > *:last-child {
     flex: 2;
   }
-`
+`;
 const Hamburger = styled.div`
   margin: -4px 0;
 `;
@@ -50,29 +54,28 @@ const Line = styled.div`
   margin: 4px auto;
 `;
 
-export const Navbar = () => {  
+export const Navbar = () => {
   const isNavbarOpen = useNavbarContext();
   const setNavbar = useNavbarActionsContext();
 
-  const isDesktop = useMediaQuery(BreakPoints.desktop.min)
+  const isTablet = useMediaQuery(BreakPoints.tablet);
 
   const toggleNav = () => {
     setNavbar(!isNavbarOpen);
-  }
+  };
   return (
-
-    <TopMenu isDesktop={isDesktop}>
+    <TopMenu isTablet={isTablet}>
       <Logo />
-        {!isDesktop &&
-          <Hamburger onClick={toggleNav}>
-            <Line></Line>
-            <Line></Line>
-            <Line></Line>
-          </Hamburger>
-        }
+      {!isTablet && (
+        <Hamburger onClick={toggleNav}>
+          <Line></Line>
+          <Line></Line>
+          <Line></Line>
+        </Hamburger>
+      )}
       <NavMenu isActive={isNavbarOpen}>
         <SocialMedia />
       </NavMenu>
     </TopMenu>
-  )
-}
+  );
+};

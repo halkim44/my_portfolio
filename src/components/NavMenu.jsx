@@ -1,26 +1,28 @@
-import React from 'react';
-import { useMediaQuery } from 'react-responsive';
-import styled from 'styled-components';
-import {ReactComponent as HomeIcon} from '../icons/home.svg';
-import {ReactComponent as CodeIcon} from '../icons/code.svg';
-import {ReactComponent as UserIcon} from '../icons/user.svg';
-import {ReactComponent as SkillsIcon} from '../icons/settings.svg';
-import {ReactComponent as MailIcon} from '../icons/mail.svg';
-import { useNavbarActionsContext } from '../context/NavbarContext';
-import { A, usePath } from 'hookrouter';
-import { BreakPoints } from '../helper/breakpoints';
+import React from "react";
+import { useMediaQuery } from "react-responsive";
+import styled from "styled-components";
+import { ReactComponent as HomeIcon } from "../icons/home.svg";
+import { ReactComponent as CodeIcon } from "../icons/code.svg";
+import { ReactComponent as UserIcon } from "../icons/user.svg";
+import { ReactComponent as SkillsIcon } from "../icons/settings.svg";
+import { ReactComponent as MailIcon } from "../icons/mail.svg";
+import { useNavbarActionsContext } from "../context/NavbarContext";
+import { A, usePath } from "hookrouter";
+import { BreakPoints } from "../helper/breakpoints";
 
 const NavLink = styled.li`
-margin: 0;
-margin-bottom: 36px;
-text-align: center;
-svg {
-  fill: #444;
-  &:hover {
-    fill: yellow;
+  margin: 0;
+  margin-bottom: 36px;
+  text-align: center;
+  svg {
+    fill: #444;
+    &:hover {
+      fill: #ffd801;
+    }
   }
-}
-${props => props.isCurrentPage && `
+  ${(props) =>
+    props.isCurrentPage &&
+    `
   svg {
     fill: #FFD801;
   }
@@ -28,13 +30,13 @@ ${props => props.isCurrentPage && `
 `;
 
 const Nav = styled.nav`
-display: flex;
-flex-direction: column;
-justify-content: center;
-flex: 1;
-ul {
-  margin-bottom: -80px;
-}
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  ul {
+    margin-bottom: -80px;
+  }
 `;
 
 const NavExit = styled.div`
@@ -44,40 +46,41 @@ const NavExit = styled.div`
   right: 0;
   left: 0;
   z-index: 2;
-`
+`;
 
 const NavContainer = styled.div`
-
   width: 56px;
   display: flex;
   flex-direction: column;
 
-  ${props => props.isTablet && `
+  ${(props) =>
+    !props.isTablet &&
+    `
     background: #181818;
-    position: absolute;
+    position: fixed;
     top: 0;
     z-index: 3;
     right: -56px;
     transition: right .2s ease-out;
     height: 100vh;
-  `
-  }
-  
-  ${props => props.isActive && `
+  `}
+
+  ${(props) =>
+    props.isActive &&
+    `
     right: 0;
   `}
 `;
 
-export const NavMenu = ({isActive, children}) => {
-
+export const NavMenu = ({ isActive, children }) => {
   const setNavbar = useNavbarActionsContext();
-  const isTablet = useMediaQuery(BreakPoints.tablet.max);
+  const isTablet = useMediaQuery(BreakPoints.tablet);
 
   const currentPage = usePath();
-  
+
   return (
     <>
-      {isActive ? <NavExit onClick={() => setNavbar(false)}></NavExit> : ""}      
+      {isActive ? <NavExit onClick={() => setNavbar(false)}></NavExit> : ""}
       <NavContainer isActive={isActive} isTablet={isTablet}>
         <Nav>
           <ul>
@@ -99,7 +102,7 @@ export const NavMenu = ({isActive, children}) => {
             <NavLink isCurrentPage={currentPage === "/projects"}>
               <A href="/projects">
                 <CodeIcon />
-                </A>
+              </A>
             </NavLink>
             <NavLink isCurrentPage={currentPage === "/contact"}>
               <A href="/contact">
@@ -108,8 +111,8 @@ export const NavMenu = ({isActive, children}) => {
             </NavLink>
           </ul>
         </Nav>
-        {children } {/* aditional components or social media links components */}
+        {children} {/* aditional components or social media links components */}
       </NavContainer>
     </>
-  )
-}
+  );
+};
