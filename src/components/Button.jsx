@@ -1,25 +1,41 @@
-import { A } from "hookrouter";
 import React from "react";
 import styled from "styled-components";
 
 const ButtonStyled = styled.button`
   background: none;
   font-size: 1em;
-  color: #ffd801;
-  border: 1px solid #ffd801;
-  padding: 8px 14px;
-  letter-spacing: 0.15em;
+  color: #fffcf7;
+  border: 2px solid #ffd801;
+  border-radius: 50px;
+  padding: 14px 36px;
+  cursor: pointer;
   &:hover {
+    color: #49492d;
     background-color: #ffd801;
-    color: #000;
   }
+
+  ${(props) =>
+    props.isFormButton &&
+    `
+    border: 2px solid #000;
+    border-radius: 0;
+    font-weight: 700;
+    letter-spacing: .4em;
+
+    &:hover {
+      color: #ffd801;
+      background-color: #000;
+    }
+  `}
 `;
 
-export const Button = ({ text, linkTo, type }) =>
+export const Button = ({ text, linkTo, type, blackText }) =>
   type === "submit" ? (
-    <ButtonStyled type={type}>{text}</ButtonStyled>
+    <ButtonStyled type={type} isFormButton>
+      {text}
+    </ButtonStyled>
   ) : (
-    <A href={linkTo}>
+    <a href={linkTo}>
       <ButtonStyled>{text}</ButtonStyled>
-    </A>
+    </a>
   );

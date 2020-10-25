@@ -1,15 +1,22 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+  }
   body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      sans-serif;
+    color: #fffcf7;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-
+  button {
+    font-family: 'Poppins', sans-serif;
+  }
   ul {
     list-style: none;
     margin: 0;
@@ -17,23 +24,22 @@ export const GlobalStyle = createGlobalStyle`
   }
   
   h2 {
-    font-size: 2.2em;
+    font-size: 1.875em;
     color: #ffd801;
     margin: 20px 0;
-    ${(props) =>
-      props.isDesktop &&
-      `
-      font-size: 6em;
-    `}
   }
 
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  input, textarea {
+    background: none;
+    border: none;
+    outline: none;
+  }
   p {
-    line-height: 1.6em;
-    ${(props) =>
-      props.isDesktop &&
-      `
-      font-size: 1.2em;
-      line-height: 1.8em;
-    `}
+    font-size: 0.9em;
+    color: #888;
   }
 `;

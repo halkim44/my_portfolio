@@ -1,39 +1,23 @@
-import React, { lazy, Suspense } from "react";
-import { useRoutes } from "hookrouter";
+import React from "react";
 import { useMediaQuery } from "react-responsive";
 
 import { Wrapper } from "./components/Wrapper";
-import { Navbar } from "./components/Navbar";
 import { NavbarContextProvider } from "./context/NavbarContext";
 import { GlobalStyle } from "./GlobalStyles";
 import { BreakPoints } from "./helper/breakpoints";
-
-const Home = lazy(() => import("./pages/Home"));
-const About = lazy(() => import("./pages/About"));
-const Skills = lazy(() => import("./pages/Skills"));
-const Projects = lazy(() => import("./pages/Projects"));
-const Contact = lazy(() => import("./pages/Contact"));
-const NotFound = lazy(() => import("./pages/NotFound"));
-
-const routes = {
-  "/": () => <Home />,
-  "/about": () => <About />,
-  "/skills": () => <Skills />,
-  "/projects": () => <Projects />,
-  "/contact": () => <Contact />,
-};
+import { MainContent } from "./components/MainContent";
+import { Fonts } from "./fonts";
+import { Menu } from "./components/menu/Menu";
 
 function App() {
-  const match = useRoutes(routes);
   const isDesktop = useMediaQuery(BreakPoints.desktop);
   return (
     <NavbarContextProvider>
       <Wrapper>
+        <Fonts />
         <GlobalStyle isDesktop={isDesktop} />
-        <Navbar />
-        <Suspense fallback={<h1>Loading...</h1>}>
-          {match || <NotFound />}
-        </Suspense>
+        <Menu />
+        <MainContent />
       </Wrapper>
     </NavbarContextProvider>
   );
