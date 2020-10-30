@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 
 const Bar = styled.div`
   padding: 6px 8px;
@@ -11,7 +11,7 @@ const Bar = styled.div`
    width: ${props.percentage}%;
   `}
 `;
-const Header4 = styled.h4`
+const Header = styled.h3`
   margin: 26px 0 6px;
   color: #ffd801;
 `;
@@ -19,6 +19,7 @@ const Header4 = styled.h4`
 export const Skills = () => {
   return (
     <div>
+      <Header>Coding Skills</Header>
       <Bar percentage="90">
         <span>HTML</span>
       </Bar>
@@ -28,7 +29,6 @@ export const Skills = () => {
       <Bar percentage="84">
         <span>JS</span>
       </Bar>
-      <Header4>Other tools</Header4>
 
       <Bar percentage="72">
         <span>REACT</span>

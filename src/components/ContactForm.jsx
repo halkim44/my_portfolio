@@ -1,6 +1,7 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useState } from "react";
+import styled from "@emotion/styled";
 import { useMediaQuery } from "react-responsive";
+import axios from "axios";
 
 import { BreakPoints } from "../helper/breakpoints";
 import { Button } from "./Button";
@@ -35,31 +36,111 @@ const InputContainer = styled.div`
 
 export const ContactForm = () => {
   const isTablet = useMediaQuery(BreakPoints.tablet);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const updateState = (e) => {
+    const newData = {};
+    newData[e.target.name] = e.target.value;
+
+    console.log(checkForm(formData));
+    console.log({ ...formData, ...newData });
+    setFormData({ ...formData, ...newData });
+  };
+
+  const resetForm = () => {
+    setFormData({
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    });
+  };
+
+  const checkForm = (obj) => {
+    for (var key in obj) {
+      console.log(key);
+      if (obj[key] === "") {
+        return false;
+      }
+    }
+    return true;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (checkForm(formData)) {
+      axios({
+        method: "POST",
+        url: "http://localhost:3002/send",
+        data: formData,
+      }).then((response) => {
+        if (response.data.status === "success") {
+          resetForm();
+          alert("Message Sent.");
+        } else if (response.data.status === "fail") {
+          alert("message failed to send.");
+        }
+      });
+    } else {
+      alert("form is not complete. Message not sent.");
+    }
+  };
 
   return (
     <Container isTablet={isTablet}>
-      <form>
+      <form
+        onSubmit={handleSubmit}
+        id="contact-form"
+        method="POST"
+        autoComplete="off"
+      >
         <InputContainer>
-          <input type="text" name="user-name" id="name" placeholder="Name" />
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Name"
+            value={formData.name}
+            onChange={updateState}
+            autoCapitalize="words"
+          />
         </InputContainer>
         <InputContainer>
           <input
             type="email"
             name="email"
-            id="user-email"
+            id="email"
+            value={formData.email}
             placeholder="Email"
+            onChange={updateState}
+            required
           />
         </InputContainer>
         <InputContainer>
           <input
             type="text"
             name="subject"
-            id="user-subject"
+            id="subject"
             placeholder="Subject"
+            value={formData.subject}
+            onChange={updateState}
           />
         </InputContainer>
         <InputContainer>
-          <textarea placeholder="Message" rows="8"></textarea>
+          <textarea
+            id="message"
+            name="message"
+            placeholder="Message"
+            onChange={updateState}
+            value={formData.message}
+            rows="8"
+          ></textarea>
         </InputContainer>
         <InputContainer>
           <Button type="submit" text="SEND">

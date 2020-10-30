@@ -1,7 +1,8 @@
 import React from "react";
 import { useMediaQuery } from "react-responsive";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { BreakPoints } from "../../helper/breakpoints";
+import { PageSections } from "../../helper/PageSections";
 
 const NavWrapper = styled.div`
   margin-top: 86px;
@@ -47,6 +48,7 @@ const NavItem = styled.li`
   font-size: 1.8em;
   font-weight: 700;
   margin: 8px 0;
+  text-transform: capitalize;
 `;
 
 export const NavMenu = ({ isActive, navOpenToggler }) => {
@@ -57,18 +59,11 @@ export const NavMenu = ({ isActive, navOpenToggler }) => {
       <NavWrapper>
         <Nav>
           <ul>
-            <NavItem onClick={navOpenToggler}>
-              <a href="#home">Home</a>
-            </NavItem>
-            <NavItem onClick={navOpenToggler}>
-              <a href="#projects">Projects</a>
-            </NavItem>
-            <NavItem onClick={navOpenToggler}>
-              <a href="#about">About</a>
-            </NavItem>
-            <NavItem onClick={navOpenToggler}>
-              <a href="#contact">Contact</a>
-            </NavItem>
+            {PageSections.map((section, i) => (
+              <NavItem onClick={navOpenToggler} key={"nav-item-" + i}>
+                <a href={"#" + section}>{section}</a>
+              </NavItem>
+            ))}
           </ul>
         </Nav>
       </NavWrapper>

@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { useMediaQuery } from "react-responsive";
 
 import { Skills } from "../Skills";
@@ -61,10 +61,12 @@ export const About = () => {
       <div>
         <h2>About Me</h2>
         <MyInfo>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit neque
-          delectus dignissimos aspernatur repudiandae eligendi nam, assumenda
-          quas, commodi similique praesentium tenetur. Dolorum amet labore quasi
-          esse cum, error aut?
+          I love codes and technology. That is my steady source of motivation
+          that drives me to learn code by myself.
+        </MyInfo>
+
+        <MyInfo>
+          I am also passionate in making websites that is responsive and fast.
         </MyInfo>
         <Skills />
       </div>

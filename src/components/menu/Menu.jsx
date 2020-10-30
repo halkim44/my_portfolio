@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import {
   useNavbarActionsContext,
   useNavbarContext,
@@ -7,7 +7,6 @@ import {
 import { useMediaQuery } from "react-responsive";
 import { BreakPoints } from "../../helper/breakpoints";
 import { NavMenu } from "./NavMenu";
-import { Pagination } from "./Pagination";
 import { MyInfo } from "./MyInfo";
 
 export const navbarWidth = "60px";
@@ -56,19 +55,21 @@ const Hamburger = styled.div`
     transform-origin: left;
     transform: rotate(0) translate(0);
   }
-  > div:nth-child(2) {
+  > div:nth-of-type(2) {
     margin: 5px 0;
+    width: 63%;
   }
+
   ${(props) =>
     props.isActive &&
     `
-		>div:first-child {
+		>div:first-of-type {
 			transform: rotate(45deg) translate(2px, -5px);
 		}
-		>div:nth-child(2) {
+		>div:nth-of-type(2) {
 			opacity: 0;
 		}
-		>div:last-child {
+		>div:last-of-type {
     transform: rotate(-45deg) translate(1px, 5px);
 		}
 	`}
@@ -90,6 +91,22 @@ const NavExit = styled.div`
   bottom: 0;
 `;
 
+const Logo = styled.span`
+  font-weight: 700;
+  margin-bottom: -4px;
+  > span {
+    color: #ffd801;
+  }
+  ${({ isDesktop }) =>
+    isDesktop &&
+    `
+  font-size: 1.6em;
+  display: block;
+  margin-top: 64px;
+  margin-left: 28px;
+  
+  `}
+`;
 export const Menu = () => {
   const isNavbarOpen = useNavbarContext();
   const setNavbar = useNavbarActionsContext();
@@ -113,7 +130,9 @@ export const Menu = () => {
         <Line />
       </Hamburger>
 
-      <Pagination />
+      <Logo isDesktop={isDesktop}>
+        Halkim<span>.</span>
+      </Logo>
 
       <NavMenu isActive={isNavbarOpen} navOpenToggler={navOpenToggler} />
       {isTablet && isNavbarOpen && <NavExit onClick={navOpenToggler} />}

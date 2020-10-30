@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 
 const ButtonStyled = styled.button`
   background: none;
@@ -27,15 +27,22 @@ const ButtonStyled = styled.button`
       background-color: #000;
     }
   `}
+
+  ${(props) =>
+    props.size === 2 &&
+    `
+    font-size: .86em;
+    padding: 6px 18px;
+  `}
 `;
 
-export const Button = ({ text, linkTo, type, blackText }) =>
+export const Button = ({ text, linkTo, type, size, createNewTab }) =>
   type === "submit" ? (
-    <ButtonStyled type={type} isFormButton>
+    <ButtonStyled type={type} isFormButton size={size}>
       {text}
     </ButtonStyled>
   ) : (
-    <a href={linkTo}>
-      <ButtonStyled>{text}</ButtonStyled>
+    <a href={linkTo} target={createNewTab ? "_blank" : ""}>
+      <ButtonStyled size={size}>{text}</ButtonStyled>
     </a>
   );

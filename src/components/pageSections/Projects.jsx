@@ -1,7 +1,12 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useState } from "react";
+import styled from "@emotion/styled";
 import { useMediaQuery } from "react-responsive";
 import { BreakPoints } from "../../helper/breakpoints";
+import { ProjectDetail } from "../ProjectDetail";
+import { ProjectsData } from "../../helper/ProjectsData";
+import { Button } from "../Button";
+
+const Container = styled.div``;
 
 const ProjectGrid = styled.div`
   display: grid;
@@ -21,24 +26,77 @@ const ProjectGrid = styled.div`
 const ProjectItem = styled.div`
   width: 100%;
   padding-bottom: 100%;
-  background: #ffd801;
+  background: url(img/project-0001.png);
+  background-size: cover;
+  cursor: pointer;
+`;
+
+const ViewMoreWrapper = styled.div`
+  text-align: center;
+  margin-top: 46px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  ${({ isTablet }) =>
+    !isTablet &&
+    `
+  flex-direction: column;
+  p {
+    margin-bottom: 24px;
+  }
+  `}
+
+  button {
+    margin-left: 12px;
+    background: #ffd801;
+    color: #49492d;
+  }
 `;
 
 export const Projects = () => {
+  const [projectToDisplay, setProjectToDisplay] = useState(null);
   const isTablet = useMediaQuery(BreakPoints.tablet);
   const isBigTablet = useMediaQuery(BreakPoints.bigTablet);
 
+  const projectItems = [];
+
+  for (let i = 0; i < 6; i++) {
+    projectItems.push(
+      <ProjectItem
+        projectNumber={i}
+        key={i}
+        onClick={(e) => setProjectToDisplay(0)}
+      />
+    );
+  }
   return (
-    <div>
-      <h2>Projects</h2>
-      <ProjectGrid isTablet={isTablet} isBigTablet={isBigTablet}>
-        <ProjectItem></ProjectItem>
-        <ProjectItem></ProjectItem>
-        <ProjectItem></ProjectItem>
-        <ProjectItem></ProjectItem>
-        <ProjectItem></ProjectItem>
-        <ProjectItem></ProjectItem>
-      </ProjectGrid>
-    </div>
+    <Container>
+      {projectToDisplay == null ? (
+        <>
+          <h2>Projects</h2>
+
+          <ProjectGrid isTablet={isTablet} isBigTablet={isBigTablet}>
+            {projectItems}
+          </ProjectGrid>
+        </>
+      ) : (
+        <>
+          {console.log(projectToDisplay)}
+          <ProjectDetail
+            exitFunction={() => setProjectToDisplay(null)}
+            project={ProjectsData[projectToDisplay]}
+          />
+        </>
+      )}
+
+      <ViewMoreWrapper isTablet={isTablet}>
+        <p>You can find more on my Github. </p>
+        <Button
+          text="Go to Github"
+          linkTo="https://github.com/halkim44"
+          createNewTab
+        />
+      </ViewMoreWrapper>
+    </Container>
   );
 };

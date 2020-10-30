@@ -1,11 +1,13 @@
 import React from "react";
-import styled from "styled-components";
-import { Hero } from "./pageSections/Hero";
+import styled from "@emotion/styled";
 import { useMediaQuery } from "react-responsive";
+
+import { Hero } from "./pageSections/Hero";
 import { BreakPoints } from "../helper/breakpoints";
 import { Contact } from "./pageSections/Contact";
 import { Projects } from "./pageSections/Projects";
 import { About } from "./pageSections/About";
+import { PageSections } from "../helper/PageSections";
 
 const Section = styled.section`
   display: flex;
@@ -38,24 +40,24 @@ const Section = styled.section`
 const Main = styled.main`
   flex: 1;
 `;
+const SectionElement = {
+  home: <Hero />,
+  projects: <Projects />,
+  about: <About />,
+  contact: <Contact />,
+};
+
 export const MainContent = () => {
   const isTablet = useMediaQuery(BreakPoints.tablet);
   const isDesktop = useMediaQuery(BreakPoints.desktop);
 
   return (
     <Main>
-      <Section id="home" isTablet={isTablet} isDesktop={isDesktop}>
-        <Hero />
-      </Section>
-      <Section id="projects" isTablet={isTablet} isDesktop={isDesktop}>
-        <Projects />
-      </Section>
-      <Section id="about" isTablet={isTablet} isDesktop={isDesktop}>
-        <About />
-      </Section>
-      <Section id="contact" isTablet={isTablet} isDesktop={isDesktop}>
-        <Contact />
-      </Section>
+      {PageSections.map((section, i) => (
+        <Section id={section} isTablet={isTablet} isDesktop={isDesktop} key={i}>
+          {SectionElement[section]}
+        </Section>
+      ))}
     </Main>
   );
 };

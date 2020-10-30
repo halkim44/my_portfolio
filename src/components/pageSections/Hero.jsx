@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { Button } from "../Button";
 import { useMediaQuery } from "react-responsive";
 import { BreakPoints } from "../../helper/breakpoints";
@@ -93,11 +93,11 @@ export const Hero = () => {
       <Content isTablet={isTablet}>
         <Greetings isTablet={isTablet}>Hello. My name is</Greetings>
 
-        <MyName isTablet={isTablet}>Halkim Rajan</MyName>
+        <MyName isTablet={isTablet}>
+          <span>Halkim</span> Rajan
+        </MyName>
         <Info>
-          A full stack all around designer that may or may not include a guide
-          for specific creative potential methods who framing and evaluating
-          moves.
+          A Self-taught front-end React developer from W.P. Labuan, Malaysia.
         </Info>
         <Button text="Contact Me" linkTo="#contact" blackText />
       </Content>
