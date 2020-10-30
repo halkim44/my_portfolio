@@ -77,7 +77,7 @@ export const ContactForm = () => {
     if (checkForm(formData)) {
       axios({
         method: "POST",
-        url: "http://localhost:3002/send",
+        url: "https://halkim-contact-form-server.herokuapp.com/send",
         data: formData,
       }).then((response) => {
         if (response.data.status === "success") {

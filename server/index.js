@@ -32,7 +32,7 @@ router.post("/send", (req, res, next) => {
   console.log(content);
   var mail = {
     from: name,
-    to: process.env.USER,
+    to: "halkimrajan@gmail.com",
     subject: req.body.subject,
     text: content,
   };
