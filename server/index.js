@@ -33,7 +33,7 @@ router.post("/send", (req, res, next) => {
   var mail = {
     from: name,
     to: "halkimrajan@gmail.com",
-    subject: req.body.subject,
+    subject: "[From Portfolio Site] ― " + req.body.subject,
     text: content,
   };
 
