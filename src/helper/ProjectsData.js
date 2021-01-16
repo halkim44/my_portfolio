@@ -14,4 +14,20 @@ export const ProjectsData = [
       "project-0005.png",
     ],
   },
+  {
+    name: "Manage Landing Page",
+    description: "a landing page for a product.",
+    tools: ["reactjs", "sass", "responsive"],
+    liveLink: "https://halkim44.github.io/manage-landing-page/",
+    codeLink: "https://github.com/halkim44/manage-landing-page",
+    screenshot: ["project-0101.png", "project-0102.png"],
+  },
+  {
+    name: "INSURE Landing Page",
+    description: "a landing page for a insurance product.",
+    tools: ["html", "css", "sass", "responsive"],
+    liveLink: "https://halkim44.github.io/insure-landing-page/",
+    codeLink: "https://github.com/halkim44/insure-landing-page",
+    screenshot: ["project-0201.png", "project-0202.png", "project-0203.png"],
+  },
 ];

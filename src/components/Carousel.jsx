@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 
 const Slider = styled.div`
@@ -9,13 +9,18 @@ const SliderItemsContainer = styled.div`
   display: flex;
   width: ${(props) => props.itemLength * 100}%;
   position: relative;
-  transition: left 0.6s;
-  left: ${({ numOfSwipes }) => (numOfSwipes ? `-${numOfSwipes}00%` : "0")};
+  transition: left 0.6s ease, height 0.4s ease-out;
+  left: ${({ pictureIndex }) => (pictureIndex ? `-${pictureIndex}00%` : "0")};
+  ${({ sliderHeight }) => `
+  height: ${sliderHeight}
+  ;`}
+  overflow: hidden;
 `;
 
 const Dots = styled.div`
   display: flex;
   justify-content: center;
+  margin-top: 20px;
 `;
 const Dot = styled.span`
   height: 16px;
@@ -40,12 +45,25 @@ const ImgWrapper = styled.div`
   }
 `;
 export const Carousel = ({ pictures }) => {
-  const [numOfSwipes, setNumOfSwipes] = useState(0);
+  const [pictureIndex, setPictureIndex] = useState(0);
+  const [sliderHeight, setsliderHeight] = useState("");
 
-  const setNumOfSwipesCond = (num) => {
+  useEffect(() => {
+    setsliderHeight(
+      document.querySelector(".img-" + pictureIndex).offsetHeight + "px"
+    );
+  }, [pictureIndex]);
+
+  const setPictureIndexCond = (num) => {
     if (num >= 0 && num < pictures.length) {
-      setNumOfSwipes(num);
+      setPictureIndex(num);
+      setsliderHeight(getCurrentImgHeight(pictureIndex));
     }
+    console.log(sliderHeight);
+  };
+
+  const getCurrentImgHeight = (picId) => {
+    return document.querySelector(".img-" + picId).offsetHeight + "px";
   };
 
   // swipe event functions START
@@ -54,7 +72,6 @@ export const Carousel = ({ pictures }) => {
 
   const lock = (e) => {
     x0 = unify(e).clientX;
-    console.log(x0);
   };
 
   const move = (e) => {
@@ -62,12 +79,11 @@ export const Carousel = ({ pictures }) => {
 
     if (Math.abs(dx - x0) >= 80) {
       if (dx > x0) {
-        setNumOfSwipesCond(numOfSwipes - 1);
+        setPictureIndexCond(pictureIndex - 1);
       } else {
-        setNumOfSwipesCond(numOfSwipes + 1);
+        setPictureIndexCond(pictureIndex + 1);
       }
     }
-    console.log(Math.abs(dx - x0));
     x0 = null;
   };
 
@@ -80,13 +96,15 @@ export const Carousel = ({ pictures }) => {
       <Slider>
         <SliderItemsContainer
           itemLength={pictures.length}
-          numOfSwipes={numOfSwipes}
+          pictureIndex={pictureIndex}
           onTouchStart={lock}
           onTouchEnd={move}
+          sliderHeight={sliderHeight}
         >
           {pictures.map((pic, i) => (
-            <ImgWrapper key={i}>
+            <ImgWrapper key={i} className="img-wrapper">
               <img
+                className={"img-" + i}
                 src={"img/" + pic}
                 alt={"project photo " + 1}
                 key={"img-" + i}
@@ -98,8 +116,8 @@ export const Carousel = ({ pictures }) => {
       <Dots>
         {pictures.map((p, i) => (
           <Dot
-            onClick={() => setNumOfSwipesCond(i)}
-            isActive={i === numOfSwipes}
+            onClick={() => setPictureIndexCond(i)}
+            isActive={i === pictureIndex}
             key={"dot-" + i}
           />
         ))}

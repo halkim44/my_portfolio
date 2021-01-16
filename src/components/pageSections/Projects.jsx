@@ -26,9 +26,16 @@ const ProjectGrid = styled.div`
 const ProjectItem = styled.div`
   width: 100%;
   padding-bottom: 100%;
-  background: url(img/project-0001.png);
-  background-size: cover;
+  ${({ projectnum }) => `
+  background: url(img/project-0${projectnum}01.png);
+  `}
+  background-size: auto 100%;
+  background-position: center;
   cursor: pointer;
+  transition: background-size 0.3s;
+  &:hover {
+    background-size: auto 115%;
+  }
 `;
 
 const ViewMoreWrapper = styled.div`
@@ -60,12 +67,13 @@ export const Projects = () => {
 
   const projectItems = [];
 
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < ProjectsData.length; i++) {
     projectItems.push(
       <ProjectItem
         projectNumber={i}
         key={i}
-        onClick={(e) => setProjectToDisplay(0)}
+        onClick={(e) => setProjectToDisplay(i)}
+        projectnum={i}
       />
     );
   }
