@@ -26,8 +26,8 @@ const ProjectGrid = styled.div`
 const ProjectItem = styled.div`
   width: 100%;
   padding-bottom: 100%;
-  ${({ projectnum }) => `
-  background: url(img/project-0${projectnum}01.png);
+  ${({ projectCoverImg }) => `
+  background: url(img/${projectCoverImg});
   `}
   background-size: auto 100%;
   background-position: center;
@@ -65,18 +65,13 @@ export const Projects = () => {
   const isTablet = useMediaQuery(BreakPoints.tablet);
   const isBigTablet = useMediaQuery(BreakPoints.bigTablet);
 
-  const projectItems = [];
+  // const projectItems = [];
 
-  for (let i = 0; i < ProjectsData.length; i++) {
-    projectItems.push(
-      <ProjectItem
-        projectNumber={i}
-        key={i}
-        onClick={(e) => setProjectToDisplay(i)}
-        projectnum={i}
-      />
-    );
-  }
+  // for (let i = 0; i < ProjectsData.length; i++) {
+  //   projectItems.push(
+
+  //   );
+  // }
   return (
     <Container>
       {projectToDisplay == null ? (
@@ -84,7 +79,13 @@ export const Projects = () => {
           <h2>Projects</h2>
 
           <ProjectGrid isTablet={isTablet} isBigTablet={isBigTablet}>
-            {projectItems}
+            {ProjectsData.map((project, i) => (
+              <ProjectItem
+                key={`project-${i}`}
+                onClick={() => setProjectToDisplay(i)}
+                projectCoverImg={project.cover}
+              />
+            ))}
           </ProjectGrid>
         </>
       ) : (
