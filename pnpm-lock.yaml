@@ -6,6 +6,7 @@ dependencies:
   '@testing-library/react': 9.5.0_react-dom@16.14.0+react@16.14.0
   '@testing-library/user-event': 7.2.1
   axios: 0.21.1
+  fontfaceobserver: 2.1.0
   node-sass: 4.14.1
   react: 16.14.0
   react-dom: 16.14.0_react@16.14.0
@@ -5238,6 +5239,10 @@ packages:
         optional: true
     resolution:
       integrity: sha512-SSG5xmZh1mkPGyKzjZP8zLjltIfpW32Y5QpdNJyjcfGxK3qo3NDDkZOZSFiGn1A6SclQxY9GzEwAHQ3dmYRWpg==
+  /fontfaceobserver/2.1.0:
+    dev: false
+    resolution:
+      integrity: sha512-ReOsO2F66jUa0jmv2nlM/s1MiutJx/srhAe2+TE8dJCMi02ZZOcCTxTCQFr3Yet+uODUtnr4Mewg+tNQ+4V1Ng==
   /for-each/0.3.3:
     dependencies:
       is-callable: 1.2.2
@@ -12224,6 +12229,7 @@ specifiers:
   '@testing-library/react': ^9.3.2
   '@testing-library/user-event': ^7.1.2
   axios: ^0.21.0
+  fontfaceobserver: ^2.1.0
   node-sass: ^4.14.1
   react: ^16.13.1
   react-dom: ^16.13.1

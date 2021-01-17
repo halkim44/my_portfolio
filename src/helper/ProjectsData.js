@@ -6,7 +6,7 @@ export const ProjectsData = [
     liveLink: "https://halkim--spotify.herokuapp.com/",
     codeLink: "https://github.com/halkim44/spotify-clone",
     screenshot: ["project-0301.png", "project-0302.png", "project-0303.png"],
-    cover: "project-0301.png",
+    cover: "project-03-cover.png",
   },
   {
     name: "Mello ― Trello Clone",
@@ -22,7 +22,7 @@ export const ProjectsData = [
       "project-0004.png",
       "project-0005.png",
     ],
-    cover: "project-0001.png",
+    cover: "project-00-cover.png",
   },
   {
     name: "Manage Landing Page",
@@ -31,7 +31,7 @@ export const ProjectsData = [
     liveLink: "https://halkim44.github.io/manage-landing-page/",
     codeLink: "https://github.com/halkim44/manage-landing-page",
     screenshot: ["project-0101.png", "project-0102.png"],
-    cover: "project-0101.png",
+    cover: "project-01-cover.png",
   },
   {
     name: "INSURE Landing Page",
@@ -40,6 +40,6 @@ export const ProjectsData = [
     liveLink: "https://halkim44.github.io/insure-landing-page/",
     codeLink: "https://github.com/halkim44/insure-landing-page",
     screenshot: ["project-0201.png", "project-0202.png", "project-0203.png"],
-    cover: "project-0201.png",
+    cover: "project-02-cover.png",
   },
 ];

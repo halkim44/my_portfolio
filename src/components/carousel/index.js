@@ -1,63 +1,17 @@
 import React, { useEffect, useState } from "react";
-import styled from "@emotion/styled";
+import { ImgLoader } from "../imageLoader";
+import { Dot, Dots, ImgWrapper, Slider, SliderItemsContainer } from "./styles";
 
-const Slider = styled.div`
-  overflow: hidden;
-`;
-
-const SliderItemsContainer = styled.div`
-  display: flex;
-  width: ${(props) => props.itemLength * 100}%;
-  position: relative;
-  transition: left 0.6s ease, height 0.4s ease-out;
-  left: ${({ pictureIndex }) => (pictureIndex ? `-${pictureIndex}00%` : "0")};
-  ${({ sliderHeight }) => `
-  height: ${sliderHeight}
-  ;`}
-  overflow: hidden;
-`;
-
-const Dots = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-`;
-const Dot = styled.span`
-  height: 16px;
-  width: 16px;
-  margin: 0 2px;
-  border-radius: 100%;
-  display: block;
-  background-color: #333;
-  transition: background-color 0.4s;
-  cursor: pointer;
-  ${({ isActive }) =>
-    isActive &&
-    `
-  background-color: #ffd801;
-  `}
-`;
-
-const ImgWrapper = styled.div`
-  width: 100%;
-  > img {
-    width: 100%;
-  }
-`;
 export const Carousel = ({ pictures }) => {
   const [pictureIndex, setPictureIndex] = useState(0);
   const [sliderHeight, setsliderHeight] = useState("");
 
-  useEffect(() => {
-    setsliderHeight(
-      document.querySelector(".img-" + pictureIndex).offsetHeight + "px"
-    );
-  }, [pictureIndex]);
+  const updateView = (num) => {
+    console.log(num, pictureIndex);
 
-  const setPictureIndexCond = (num) => {
     if (num >= 0 && num < pictures.length) {
       setPictureIndex(num);
-      setsliderHeight(getCurrentImgHeight(pictureIndex));
+      setsliderHeight(getCurrentImgHeight(num));
     }
     console.log(sliderHeight);
   };
@@ -79,9 +33,9 @@ export const Carousel = ({ pictures }) => {
 
     if (Math.abs(dx - x0) >= 80) {
       if (dx > x0) {
-        setPictureIndexCond(pictureIndex - 1);
+        updateView(pictureIndex - 1);
       } else {
-        setPictureIndexCond(pictureIndex + 1);
+        updateView(pictureIndex + 1);
       }
     }
     x0 = null;
@@ -91,6 +45,21 @@ export const Carousel = ({ pictures }) => {
     return false;
   };
   // Swipe event functions END
+
+  useEffect(() => {
+    // fix the slider initial height unchanged problem
+    // const firstImgDOM = document.querySelector(".img-0");
+    // firstImgDOM.onload = (e) => {
+    // setsliderHeight(firstImgDOM.offsetHeight + "px");
+    // setsliderHeight(getCurrentImgHeight(0));
+    // };
+  }, []);
+
+  useEffect(() => {
+    // setsliderHeight(
+    // document.querySelector(".img-" + pictureIndex).offsetHeight + "px"
+    // );
+  }, []);
   return (
     <div>
       <Slider>
@@ -103,11 +72,15 @@ export const Carousel = ({ pictures }) => {
         >
           {pictures.map((pic, i) => (
             <ImgWrapper key={i} className="img-wrapper">
-              <img
-                className={"img-" + i}
+              <ImgLoader
+                className={"img-" + i + " carousel-img"}
                 src={"img/" + pic}
                 alt={"project photo " + 1}
-                key={"img-" + i}
+                finishLoadingCallback={() => {
+                  if (i === 0) {
+                    updateView(0);
+                  }
+                }}
               />
             </ImgWrapper>
           ))}
@@ -116,7 +89,7 @@ export const Carousel = ({ pictures }) => {
       <Dots>
         {pictures.map((p, i) => (
           <Dot
-            onClick={() => setPictureIndexCond(i)}
+            onClick={() => updateView(i)}
             isActive={i === pictureIndex}
             key={"dot-" + i}
           />

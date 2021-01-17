@@ -1,5 +1,5 @@
 
 Feature to Add:
-  ☐ Add spotify clone project @started(21-01-16 18:32)
-  ☐ Add loading screen
-  ☐ make the slider lazy
+  ✔ Add spotify clone project @started(21-01-16 18:32) @done(21-01-16 19:32) @lasted(1h20s)
+  ✔ Add loading screen for when font is not ready @started(21-01-17 12:04) @done(21-01-17 17:25) @lasted(5h21m11s)
+  ✘ make the slider lazy @cancelled(21-01-17 17:25)

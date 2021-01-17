@@ -65,13 +65,6 @@ export const Projects = () => {
   const isTablet = useMediaQuery(BreakPoints.tablet);
   const isBigTablet = useMediaQuery(BreakPoints.bigTablet);
 
-  // const projectItems = [];
-
-  // for (let i = 0; i < ProjectsData.length; i++) {
-  //   projectItems.push(
-
-  //   );
-  // }
   return (
     <Container>
       {projectToDisplay == null ? (

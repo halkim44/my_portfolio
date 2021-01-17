@@ -67,7 +67,7 @@ const BackgroundPhoto = styled.div`
       rgba(0, 0, 0, 0.8) 45%,
       rgba(0, 0, 0, 0.4)
     ),
-    url("img/code-background.jpg");
+    url("img/code-background.webp");
   background-size: cover;
   background-position: 0, right -300px top;
   width: 50%;

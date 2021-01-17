@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { Button } from "./Button";
-import { Carousel } from "./Carousel";
 import { useMediaQuery } from "react-responsive";
 import { BreakPoints } from "../helper/breakpoints";
+import { Carousel } from "./carousel";
 
 const GoBackBtnWrapper = styled.div`
   margin-bottom: 12px;
@@ -66,9 +66,13 @@ const Content = styled.div`
   `}
 `;
 
-const Container = styled.div``;
+const Container = styled.div`
+  position: relative;
+`;
+
 export const ProjectDetail = ({ exitFunction, project }) => {
   const isDesktop = useMediaQuery(BreakPoints.desktop);
+
   return (
     <Container>
       <GoBackBtnWrapper>

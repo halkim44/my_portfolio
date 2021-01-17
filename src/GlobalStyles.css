@@ -4,16 +4,21 @@ html {
 * {
   box-sizing: border-box;
   margin: 0;
-  font-family: "Poppins", sans-serif;
 }
 body {
   margin: 0;
   color: #fffcf7;
   font-size: 16px;
   font-family: "Poppins", sans-serif;
+
+  /* font-family: sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+/* .fonts-loaded { */
+/* font-family: "Poppins", sans-serif; */
+/* } */
+
 button {
   font-family: "Poppins", sans-serif;
 }
@@ -42,4 +47,18 @@ textarea {
 p {
   font-size: 0.9em;
   color: #888;
+}
+.loading-page--main {
+  font-family: sans-serif;
+  font-size: 2em;
+  background: #000;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
