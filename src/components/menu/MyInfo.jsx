@@ -29,7 +29,7 @@ export const MyInfo = () => {
         </InfoListItem>
         <InfoListItem>
           <Title>ROLE</Title>
-          <Content>Junior Front-End Developer (React.js)</Content>
+          <Content>Full Stack JavaScript Developer (React.js)</Content>
         </InfoListItem>
         <InfoListItem>
           <Title>EMAIL</Title>

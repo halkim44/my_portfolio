@@ -97,7 +97,8 @@ export const Hero = () => {
           <span>Halkim</span> Rajan
         </MyName>
         <Info>
-          A Self-taught front-end React developer from W.P. Labuan, Malaysia.
+          A Self-taught Full Stack JavaScript developer from W.P. Labuan,
+          Malaysia.
         </Info>
         <Button text="Contact Me" linkTo="#contact" blackText />
       </Content>
