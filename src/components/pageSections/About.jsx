@@ -61,12 +61,16 @@ export const About = () => {
       <div>
         <h2>About Me</h2>
         <MyInfo>
-          I love codes and technology. That is my steady source of motivation
-          that drives me to learn code by myself.
+          I have a deep passion for technology and coding, which motivates me to
+          continuously learn and grow as a developer. I find great joy in
+          creating websites that are not only visually appealing, but also
+          responsive and lightning-fast.
         </MyInfo>
 
         <MyInfo>
-          I am also passionate in making websites that is responsive and fast.
+          Through my dedication and commitment to staying up-to-date with the
+          latest tools and techniques, I strive to deliver the best possible
+          user experience for every website I create.
         </MyInfo>
         <Skills />
       </div>
