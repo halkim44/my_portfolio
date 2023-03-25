@@ -3,7 +3,7 @@ export const ProjectsData = [
     name: "Spotify Clone",
     description: "a spotify clone app made using the spotify API.",
     tools: ["spotify API", "react", "emotionjs", "node.js"],
-    liveLink: "https://halkim--spotify.herokuapp.com/",
+    liveLink: "https://spotify-clone-server.onrender.com/",
     codeLink: "https://github.com/halkim44/spotify-clone",
     screenshot: ["project-0301.png", "project-0302.png", "project-0303.png"],
     cover: "project-03-cover.png",
