@@ -42,7 +42,11 @@ export const Button = ({ text, linkTo, type, size, createNewTab }) =>
       {text}
     </ButtonStyled>
   ) : (
-    <a href={linkTo} target={createNewTab ? "_blank" : ""}>
+    <a
+      href={linkTo}
+      target={createNewTab ? "_blank" : ""}
+      rel={createNewTab ? "noreferrer" : ""}
+    >
       <ButtonStyled size={size}>{text}</ButtonStyled>
     </a>
   );

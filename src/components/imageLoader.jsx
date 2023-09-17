@@ -17,7 +17,7 @@ export const ImgLoader = ({ className, src, alt, finishLoadingCallback }) => {
       finishLoadingCallback();
       setCallbackHasCalled(true);
     }
-  }, [isLoading, finishLoadingCallback]);
+  }, [isLoading, finishLoadingCallback, callbackHasCalled]);
   return (
     <>
       <Loading style={{ display: isLoading ? "" : "none" }}>
