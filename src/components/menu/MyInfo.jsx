@@ -18,6 +18,11 @@ const InfoListItem = styled.div`
     display: block;
   }
 `;
+export const EmailLink = styled.a`
+  &:hover {
+    border-bottom: 2px solid #ffd801;
+  }
+`;
 const Content = styled.span``;
 export const MyInfo = () => {
   return (
@@ -33,12 +38,11 @@ export const MyInfo = () => {
         </InfoListItem>
         <InfoListItem>
           <Title>EMAIL</Title>
-          <Content>halkimrajan@gmail.com</Content>
+          <EmailLink href="mailto:halkimrajan@gmail.com">
+            <Content>halkimrajan@gmail.com</Content>
+          </EmailLink>
         </InfoListItem>
-        <InfoListItem>
-          <Title>NUMBER</Title>
-          <Content>+6011 - 1415 3341</Content>
-        </InfoListItem>
+        <InfoListItem></InfoListItem>
       </ul>
     </MyInfoContainer>
   );
